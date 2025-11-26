@@ -1,0 +1,20 @@
+```mermaid
+sequenceDiagram
+    participant Eng as Engineer
+    participant FIS as AWS FIS
+    participant Target as Target Resource
+    participant CW as CloudWatch
+    participant Alert as Alerting
+
+    Eng->>FIS: Start experiment
+    FIS->>Target: Inject failure
+    Target->>CW: Emit metrics
+    CW->>FIS: Check stop conditions
+    
+    alt Stop condition met
+        FIS->>Target: Execute rollback
+        FIS->>Alert: Send notification
+    else Experiment complete
+        FIS->>Eng: Return results
+    end
+```

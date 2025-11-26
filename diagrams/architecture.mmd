@@ -1,0 +1,39 @@
+```mermaid
+graph TD
+    subgraph Control["Control Plane"]
+        FIS[AWS FIS]
+        Templates[Experiment Templates]
+        StepFn[Step Functions]
+    end
+
+    subgraph Targets["Target Resources"]
+        EC2[EC2 Instances]
+        ECS[ECS Tasks]
+        RDS[RDS Databases]
+        Lambda[Lambda Functions]
+    end
+
+    subgraph Safety["Safety Controls"]
+        StopCond[Stop Conditions]
+        Alarms[CloudWatch Alarms]
+        Rollback[Rollback Actions]
+    end
+
+    subgraph Observe["Observability"]
+        CW[CloudWatch]
+        Logs[Experiment Logs]
+        Reports[Game Day Reports]
+    end
+
+    Templates --> FIS
+    FIS --> StepFn
+    StepFn --> EC2
+    StepFn --> ECS
+    StepFn --> RDS
+    StepFn --> Lambda
+    Alarms --> StopCond
+    StopCond --> Rollback
+    FIS --> CW
+    CW --> Logs
+    Logs --> Reports
+```

@@ -1,0 +1,33 @@
+```mermaid
+graph LR
+    subgraph Input["Experiment Input"]
+        Template[Template]
+        Config[Configuration]
+    end
+
+    subgraph Execute["Execution"]
+        FIS[FIS Engine]
+        Actions[Fault Actions]
+    end
+
+    subgraph Monitor["Monitoring"]
+        Metrics[Metrics]
+        Alarms[Alarms]
+    end
+
+    subgraph Output["Results"]
+        Logs[Logs]
+        Reports[Reports]
+        Learnings[Learnings]
+    end
+
+    Template --> FIS
+    Config --> FIS
+    FIS --> Actions
+    Actions --> Metrics
+    Metrics --> Alarms
+    Alarms --> FIS
+    FIS --> Logs
+    Logs --> Reports
+    Reports --> Learnings
+```
