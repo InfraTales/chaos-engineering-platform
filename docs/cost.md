@@ -22,4 +22,4 @@ This document provides cost estimates for the **Chaos Engineering Platform** in 
 
 ## Related Documentation
 
-See `ARCHITECTURE.md` for details and `DEPLOYMENT.md` for setup.
+See the project README for architecture details.md` for setup.
